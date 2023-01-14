@@ -2,7 +2,7 @@
 
 # About
 
-Simple Feedback App built with TypeScript
+Simple Feedback App built with TypeScript and React
 
 # Setup
 
