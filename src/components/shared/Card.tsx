@@ -1,12 +1,13 @@
-import React, { ReactElement } from 'react'
+import React, { ReactElement } from "react";
 
-type Props = { children: React.ReactNode }
+type Props = {
+  children: React.ReactNode;
+  reverse: boolean;
+};
 
 function Card(props: Props) {
-  const { children } = props;
-  return (
-    <div className='card'>{children}</div>
-  )
+  const { children, reverse } = props;
+  return <div className={`card ${reverse && "reverse"}`}>{children}</div>;
 }
 
-export default Card
+export default Card;

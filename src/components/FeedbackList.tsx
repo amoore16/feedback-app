@@ -13,7 +13,7 @@ const FeedbackList = (props: Props) => {
   return (<> {!feedback ? (<SimpleLoader />) :
     <>
       <div className="feedback-list">
-        {feedback.map((item: any) => (<FeedbackItem key={item.id} item={item}></FeedbackItem>))}
+        {feedback.map((item: any) => (<FeedbackItem key={item.id} item={item} handleDelete={(id) => console.log(id)}></FeedbackItem>))}
       </div>
     </>}
   </>)
