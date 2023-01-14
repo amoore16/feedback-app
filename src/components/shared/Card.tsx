@@ -1,8 +1,8 @@
 import React, { ReactElement } from "react";
 
 type Props = {
-  children: React.ReactNode;
-  reverse: boolean;
+  children?: React.ReactNode;
+  reverse?: boolean;
 };
 
 function Card(props: Props) {

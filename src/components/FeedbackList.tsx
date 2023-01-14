@@ -1,12 +1,13 @@
-import FeedbackItem from './FeedbackItem'
+import FeedbackItem, { FeedbackItemType } from './FeedbackItem'
 import SimpleLoader from './simpleLoader'
 
 type Props = {
-  feedback: any
+  feedback: FeedbackItemType[];
+  handleDelete: (id: number) => void
 }
 
 const FeedbackList = (props: Props) => {
-  const { feedback } = props
+  const { feedback, handleDelete } = props
 
   return (
     <>
@@ -20,7 +21,7 @@ const FeedbackList = (props: Props) => {
               <FeedbackItem
                 key={item.id}
                 item={item}
-                handleDelete={(id) => console.log(id)}
+                handleDelete={handleDelete}
               ></FeedbackItem>
             ))}
           </div>

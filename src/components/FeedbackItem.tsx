@@ -6,23 +6,23 @@ import Card from "./shared/Card";
 export interface FeedbackItemType {
   rating: number,
   text: string,
-  id: any,
+  id: number,
 }
 
 type Props = {
   item: FeedbackItemType
-  handleDelete: (even: React.MouseEventHandler<HTMLButtonElement>) => void
+  handleDelete: (id: number) => void
 }
 
 function FeedbackItem(props: Props) {
 
   const { item, handleDelete } = props;
-  const { rating, text,  } = item
+  const { rating, text, id } = item
 
   return (
     <Card reverse={true}>
       <div className="num-display">{rating}</div>
-      <button onClick={() => handleDelete(item.id)} className='close'>
+      <button onClick={() => handleDelete(id)} className='close'>
         <FaTimes color='purple'/>
       </button>
       <div className="text-display">
