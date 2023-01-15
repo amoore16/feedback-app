@@ -1,5 +1,5 @@
 import FeedbackItem, { FeedbackItemType } from './FeedbackItem'
-import SimpleLoader from './simpleLoader'
+import SimpleLoader from './shared/simpleLoader'
 
 type Props = {
   feedback: FeedbackItemType[];
