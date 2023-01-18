@@ -1,12 +1,19 @@
-import { ChangeEvent, FormEventHandler, useState } from 'react'
+import React, { ChangeEvent, FormEventHandler, useState } from 'react'
+import { v4 as uuidv4 } from 'uuid';
+
+import { FeedbackItemType } from './FeedbackItem'
 import RatingSelect from './RatingSelect'
 import Button from './shared/Button'
 
 import Card from './shared/Card'
 
-type Props = {}
+type Props = {
+  handleAdd: (feedbackItem: FeedbackItemType) => void
+}
 
-function FeedbackForm({}: Props) {
+function FeedbackForm(props: Props) {
+  const { handleAdd } = props
+
   const [text, setText] = useState('')
   const [btnDisabled, setBtnDisabled] = useState(true)
   const [rating, setRating] = useState(10)
@@ -14,23 +21,37 @@ function FeedbackForm({}: Props) {
 
   const handleTextChange = (e: ChangeEvent<HTMLInputElement>) => {
     if (text === '') {
-        setBtnDisabled(true)
-        setMessage('')
+      setBtnDisabled(true)
+      setMessage('')
     } else if (text !== '' && text.trim().length <= 10) {
-        setMessage('Text must be at least 10 characters')
-        setBtnDisabled(true)
+      setMessage('Text must be at least 10 characters')
+      setBtnDisabled(true)
     } else {
-        setBtnDisabled(false)
-        setMessage('')
+      setBtnDisabled(false)
+      setMessage('')
     }
     setText(e.target.value)
   }
 
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault()
+    if (text.trim().length > 10) {
+      const newFeedbackItem: FeedbackItemType = {
+        id: uuidv4(), 
+        text,
+        rating,
+      }
+      handleAdd(newFeedbackItem)
+
+      setText('')
+    }
+  }
+
   return (
     <Card>
-      <form>
+      <form onSubmit={handleSubmit}>
         <h2>How would you rate your service with us?</h2>
-        <RatingSelect select={(rating) => setRating(rating)}/>
+        <RatingSelect select={(rating) => setRating(rating)} />
         <div className="input-group">
           <input
             type="text"
@@ -43,7 +64,7 @@ function FeedbackForm({}: Props) {
           </Button>
         </div>
 
-        {message && <div className='message'>{message}</div>}
+        {message && <div className="message">{message}</div>}
       </form>
     </Card>
   )

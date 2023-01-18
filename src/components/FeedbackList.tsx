@@ -3,7 +3,7 @@ import SimpleLoader from './shared/simpleLoader'
 
 type Props = {
   feedback: FeedbackItemType[];
-  handleDelete: (id: number) => void
+  handleDelete: (id: string | number) => void
 }
 
 const FeedbackList = (props: Props) => {
