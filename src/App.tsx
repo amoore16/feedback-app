@@ -16,8 +16,8 @@ function App() {
     }
   }
 
-  const addFeedback = (feedback: FeedbackItemType) => {
-    console.log(feedback)
+  const addFeedback = (newFeedbackItem: FeedbackItemType) => {
+    setFeedback([newFeedbackItem,...feedback])
   }
 
   return (

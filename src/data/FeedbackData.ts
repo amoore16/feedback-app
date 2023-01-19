@@ -1,5 +1,6 @@
+import { FeedbackItemType } from "../components/FeedbackItem"
 
-const FeedbackData = [
+const FeedbackData: FeedbackItemType[] = [
     {
       id: 1,
       rating: 10,
