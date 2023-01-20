@@ -1,10 +1,15 @@
 import { useState } from 'react'
+import { BrowserRouter, Routes, Route } from 'react-router-dom'
+
 import './App.css'
+
 import Header from './components/Header'
 import FeedbackData from './data/FeedbackData'
 import FeedbackList from './components/FeedbackList'
 import FeedbackStats from './components/FeedbackStats'
 import FeedbackForm from './components/FeedbackForm'
+import About from './pages/About'
+
 import { FeedbackItemType } from './components/FeedbackItem'
 
 function App() {
@@ -17,18 +22,31 @@ function App() {
   }
 
   const addFeedback = (newFeedbackItem: FeedbackItemType) => {
-    setFeedback([newFeedbackItem,...feedback])
+    setFeedback([newFeedbackItem, ...feedback])
   }
 
   return (
-    <div className="App">
+    <BrowserRouter>
       <Header />
       <div className="container">
-        <FeedbackForm handleAdd={addFeedback} />
-        <FeedbackStats feedback={feedback} />
-        <FeedbackList feedback={feedback} handleDelete={deleteFeedback} />
+        <Routes>
+          <Route path="/about" element={<About />} />
+          <Route
+            path="/"
+            element={
+              <>
+                <FeedbackForm handleAdd={addFeedback} />
+                <FeedbackStats feedback={feedback} />
+                <FeedbackList
+                  feedback={feedback}
+                  handleDelete={deleteFeedback}
+                />
+              </>
+            }
+          ></Route>
+        </Routes>
       </div>
-    </div>
+    </BrowserRouter>
   )
 }
 
