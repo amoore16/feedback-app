@@ -1,5 +1,5 @@
 import React, { ChangeEvent, FormEventHandler, useState } from 'react'
-import { v4 as uuidv4 } from 'uuid';
+import { v4 as uuidv4 } from 'uuid'
 
 import { FeedbackItemType } from './FeedbackItem'
 import RatingSelect from './RatingSelect'
@@ -37,7 +37,7 @@ function FeedbackForm(props: Props) {
     e.preventDefault()
     if (text.trim().length > 10) {
       const newFeedbackItem: FeedbackItemType = {
-        id: uuidv4(), 
+        id: uuidv4(),
         text,
         rating,
       }
