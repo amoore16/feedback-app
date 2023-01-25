@@ -1,13 +1,18 @@
+import { useContext } from 'react';
+
 import FeedbackItem, { FeedbackItemType } from './FeedbackItem'
 import SimpleLoader from './shared/simpleLoader'
+import FeedbackContext from '../context/FeedbackContext';
+
 
 type Props = {
-  feedback: FeedbackItemType[];
   handleDelete: (id: string | number) => void
 }
 
 const FeedbackList = (props: Props) => {
-  const { feedback, handleDelete } = props
+  const { handleDelete } = props
+
+  const feedback = useContext(FeedbackContext)
 
   return (
     <>
