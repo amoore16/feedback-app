@@ -2,12 +2,12 @@ import React, { createContext, useState } from 'react'
 import { FeedbackItemType } from '../components/FeedbackItem'
 
 export type FeedbackContextType = {
-  id: number | string
-  text: string
-  rating: number
+  feedback: FeedbackItemType[]
+  addFeedback: (newFeedbackItem: FeedbackItemType) => void
+  deleteFeedback: (id: string | number) => void
 }
 
-const FeedbackContext = createContext<FeedbackContextType[] | null>(null)
+const FeedbackContext = createContext<FeedbackContextType | null>(null)
 
 type Props = {
   children?: React.ReactNode
@@ -16,7 +16,7 @@ type Props = {
 export const FeedbackProvider = (props: Props) => {
   const { children } = props
 
-  const [feedback, setFeedback] = useState<FeedbackContextType[]>([
+  const [feedback, setFeedback] = useState<FeedbackItemType[]>([
     {
       id: 1,
       text: 'Context',
@@ -29,8 +29,18 @@ export const FeedbackProvider = (props: Props) => {
     },
   ])
 
+  const addFeedback = (newFeedbackItem: FeedbackItemType) => {
+    setFeedback([newFeedbackItem, ...feedback])
+  }
+
+  const deleteFeedback = (id: string | number) => {
+    if (window.confirm('Are you sure you wish to delete?')) {
+      setFeedback(feedback.filter((item) => item.id !== id))
+    }
+  }
+
   return (
-    <FeedbackContext.Provider value={[...feedback]}>
+    <FeedbackContext.Provider value={{ feedback, deleteFeedback, addFeedback }}>
       {children}
     </FeedbackContext.Provider>
   )

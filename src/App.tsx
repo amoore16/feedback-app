@@ -14,17 +14,6 @@ import { FeedbackProvider } from './context/FeedbackContext'
 import { FeedbackItemType } from './components/FeedbackItem'
 
 function App() {
-  const [feedback, setFeedback] = useState(FeedbackData)
-
-  const deleteFeedback = (id: string | number) => {
-    if (window.confirm('Are you sure you wish to delete?')) {
-      setFeedback(feedback.filter((item) => item.id !== id))
-    }
-  }
-
-  const addFeedback = (newFeedbackItem: FeedbackItemType) => {
-    setFeedback([newFeedbackItem, ...feedback])
-  }
 
   return (
     <FeedbackProvider>
@@ -37,10 +26,9 @@ function App() {
               path="/"
               element={
                 <>
-                  <FeedbackForm handleAdd={addFeedback} />
+                  <FeedbackForm/>
                   <FeedbackStats/>
                   <FeedbackList
-                    handleDelete={deleteFeedback}
                   />
                 </>
               }

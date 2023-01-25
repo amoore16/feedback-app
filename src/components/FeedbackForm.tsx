@@ -1,5 +1,6 @@
-import React, { ChangeEvent, FormEventHandler, useState } from 'react'
+import React, { ChangeEvent, FormEventHandler, useContext, useState } from 'react'
 import { v4 as uuidv4 } from 'uuid'
+import FeedbackContext, { FeedbackContextType } from '../context/FeedbackContext'
 
 import { FeedbackItemType } from './FeedbackItem'
 import RatingSelect from './RatingSelect'
@@ -8,16 +9,17 @@ import Button from './shared/Button'
 import Card from './shared/Card'
 
 type Props = {
-  handleAdd: (feedbackItem: FeedbackItemType) => void
+  
 }
 
 function FeedbackForm(props: Props) {
-  const { handleAdd } = props
 
   const [text, setText] = useState('')
   const [btnDisabled, setBtnDisabled] = useState(true)
   const [rating, setRating] = useState(10)
   const [message, setMessage] = useState('')
+
+  const {feedback, addFeedback} = useContext(FeedbackContext) as FeedbackContextType
 
   const handleTextChange = (e: ChangeEvent<HTMLInputElement>) => {
     if (text === '') {
@@ -41,7 +43,7 @@ function FeedbackForm(props: Props) {
         text,
         rating,
       }
-      handleAdd(newFeedbackItem)
+      addFeedback(newFeedbackItem)
 
       setText('')
     }
