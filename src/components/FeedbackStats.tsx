@@ -1,4 +1,3 @@
-import { FeedbackItemType } from './FeedbackItem'
 import { useContext } from 'react'
 import FeedbackContext, { FeedbackContextType } from '../context/FeedbackContext'
 

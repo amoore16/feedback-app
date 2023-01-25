@@ -1,16 +1,15 @@
 import { useContext } from 'react';
 
-import FeedbackItem, { FeedbackItemType } from './FeedbackItem'
+import FeedbackItem from './FeedbackItem'
 import SimpleLoader from './shared/simpleLoader'
 import FeedbackContext, { FeedbackContextType } from '../context/FeedbackContext';
-
 
 type Props = {
 }
 
 const FeedbackList = (props: Props) => {
 
-  const {feedback, deleteFeedback} = useContext(FeedbackContext) as FeedbackContextType
+  const {feedback } = useContext(FeedbackContext) as FeedbackContextType
 
   return (
     <>
@@ -24,7 +23,6 @@ const FeedbackList = (props: Props) => {
               <FeedbackItem
                 key={item.id}
                 item={item}
-                handleDelete={deleteFeedback}
               ></FeedbackItem>
             ))}
           </div>

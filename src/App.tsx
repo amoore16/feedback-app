@@ -11,8 +11,6 @@ import FeedbackForm from './components/FeedbackForm'
 import About from './pages/About'
 import { FeedbackProvider } from './context/FeedbackContext'
 
-import { FeedbackItemType } from './components/FeedbackItem'
-
 function App() {
 
   return (

@@ -1,6 +1,5 @@
 import React, { createContext, useState } from 'react'
-import { FeedbackItemType } from '../components/FeedbackItem'
-
+import { FeedbackItemType } from '../types/FeedbackItem'
 export type FeedbackContextType = {
   feedback: FeedbackItemType[]
   addFeedback: (newFeedbackItem: FeedbackItemType) => void

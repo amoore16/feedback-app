@@ -1,4 +1,4 @@
-import { FeedbackItemType } from "../components/FeedbackItem"
+import { FeedbackItemType } from "../types/FeedbackItem"
 
 const FeedbackData: FeedbackItemType[] = [
     {
