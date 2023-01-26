@@ -1,32 +1,29 @@
 import React, { createContext, useState } from 'react'
-import { FeedbackItemType } from '../types/FeedbackItem'
-export type FeedbackContextType = {
-  feedback: FeedbackItemType[]
-  addFeedback: (newFeedbackItem: FeedbackItemType) => void
-  deleteFeedback: (id: string | number) => void
-}
-
-const FeedbackContext = createContext<FeedbackContextType | null>(null)
+import { EditFeedbackItem, FeedbackItemType } from '../types/FeedbackItem'
 
 type Props = {
   children?: React.ReactNode
 }
 
+export type FeedbackContextType = {
+  feedback: FeedbackItemType[]
+  addFeedback: (newFeedbackItem: FeedbackItemType) => void
+  deleteFeedback: (id: string | number) => void
+  editFeedback: (item: FeedbackItemType) => void
+}
+
+const FeedbackContext = createContext<FeedbackContextType | undefined>(
+  undefined,
+)
 export const FeedbackProvider = (props: Props) => {
   const { children } = props
 
-  const [feedback, setFeedback] = useState<FeedbackItemType[]>([
-    {
-      id: 1,
-      text: 'Context',
-      rating: 10,
-    },
-    {
-      id: 2,
-      text: 'Context 2',
-      rating: 9,
-    },
-  ])
+  const [feedback, setFeedback] = useState<FeedbackItemType[]>([])
+
+  const [feedbackEdit, setFeedbackEdit] = useState<EditFeedbackItem>({
+    item: { id: '', text: '', rating: 0 },
+    edit: false,
+  })
 
   const addFeedback = (newFeedbackItem: FeedbackItemType) => {
     setFeedback([newFeedbackItem, ...feedback])
@@ -38,8 +35,17 @@ export const FeedbackProvider = (props: Props) => {
     }
   }
 
+  const editFeedback = (item: FeedbackItemType) => {
+    setFeedbackEdit({
+      item,
+      edit: true,
+    })
+  }
+
   return (
-    <FeedbackContext.Provider value={{ feedback, deleteFeedback, addFeedback }}>
+    <FeedbackContext.Provider
+      value={{ feedback, deleteFeedback, addFeedback, editFeedback }}
+    >
       {children}
     </FeedbackContext.Provider>
   )

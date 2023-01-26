@@ -3,3 +3,8 @@ export type FeedbackItemType = {
     text: string
     id: string | number
   }
+
+export type EditFeedbackItem = {
+    item: FeedbackItemType,
+    edit: boolean
+}
