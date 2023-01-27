@@ -2,9 +2,7 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 import Card from '../components/shared/Card'
 
-type Props = {}
-
-const About = (props: Props) => {
+const About = () => {
   return (
     <Card>
       <div className="about">

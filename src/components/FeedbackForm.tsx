@@ -8,11 +8,8 @@ import Button from './shared/Button'
 
 import Card from './shared/Card'
 
-type Props = {
-  
-}
 
-function FeedbackForm(props: Props) {
+function FeedbackForm() {
 
   const [text, setText] = useState('')
   const [btnDisabled, setBtnDisabled] = useState(true)

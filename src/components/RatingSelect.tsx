@@ -1,4 +1,4 @@
-import { useContext, useState, useEffect } from 'react'
+import React, { useContext, useState, useEffect } from 'react'
 import FeedbackContext, { FeedbackContextType } from '../context/FeedbackContext'
 
 type Props = {
@@ -15,7 +15,7 @@ function RatingSelect(props: Props) {
     setSelected(feedbackEdit.item.rating)
   }, [feedbackEdit])
 
-  const handleChange = (e: any) => {
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setSelected(Number(e.currentTarget.value))
     select(Number(e.currentTarget.value))
   }

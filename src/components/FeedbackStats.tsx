@@ -1,12 +1,10 @@
 import { useContext } from 'react'
 import FeedbackContext, { FeedbackContextType } from '../context/FeedbackContext'
 
-type Props = {}
-
-function FeedbackStats(props: Props) {
+function FeedbackStats() {
   const {feedback} = useContext(FeedbackContext) as FeedbackContextType
 
-  let average: number = 0
+  let average = 0
 
   if (feedback) {
     average =
