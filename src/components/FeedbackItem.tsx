@@ -12,7 +12,7 @@ type Props = {
 
 function FeedbackItem(props: Props) {
 
-  const {deleteFeedback } = useContext(FeedbackContext) as FeedbackContextType
+  const {deleteFeedback, editFeedback } = useContext(FeedbackContext) as FeedbackContextType
 
   const { item } = props
   const { rating, text, id } = item
@@ -23,8 +23,8 @@ function FeedbackItem(props: Props) {
       <button onClick={() => deleteFeedback(id)} className="close">
         <FaTimes color="purple" />
       </button>
-      <button className='edit'>
-        <FaEdit color='purple '></FaEdit>
+      <button onClick={() => editFeedback(item)} className='edit'>
+        <FaEdit color='purple' />
       </button>
       <div className="text-display">{text}</div>
     </Card>

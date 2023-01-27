@@ -1,4 +1,4 @@
-import React, { ChangeEvent, FormEventHandler, useContext, useState } from 'react'
+import React, { ChangeEvent, useContext, useState, useEffect } from 'react'
 import { v4 as uuidv4 } from 'uuid'
 import FeedbackContext, { FeedbackContextType } from '../context/FeedbackContext'
 
@@ -19,7 +19,15 @@ function FeedbackForm(props: Props) {
   const [rating, setRating] = useState(10)
   const [message, setMessage] = useState('')
 
-  const {addFeedback} = useContext(FeedbackContext) as FeedbackContextType
+  const {addFeedback, feedbackEdit, updateFeedback} = useContext(FeedbackContext) as FeedbackContextType
+
+  useEffect(() => {
+    if (feedbackEdit.edit === true) {
+      setBtnDisabled(false)
+      setText(feedbackEdit.item.text)
+      setRating(feedbackEdit.item.rating)
+    }
+  }, [feedbackEdit])
 
   const handleTextChange = (e: ChangeEvent<HTMLInputElement>) => {
     if (text === '') {
@@ -43,8 +51,13 @@ function FeedbackForm(props: Props) {
         text,
         rating,
       }
-      addFeedback(newFeedbackItem)
-
+      
+      if(feedbackEdit.edit === true) {
+        updateFeedback(feedbackEdit.item.id, newFeedbackItem)
+      } else {
+        addFeedback(newFeedbackItem)
+      }
+      
       setText('')
     }
   }

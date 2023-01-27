@@ -9,6 +9,7 @@ import FeedbackStats from './components/FeedbackStats'
 import FeedbackForm from './components/FeedbackForm'
 import About from './pages/About'
 import { FeedbackProvider } from './context/FeedbackContext'
+import AboutLinkIcon from './components/AboutLinkIcon'
 
 function App() {
 
@@ -31,6 +32,7 @@ function App() {
               }
             ></Route>
           </Routes>
+          <AboutLinkIcon />
         </div>
       </BrowserRouter>
     </FeedbackProvider>

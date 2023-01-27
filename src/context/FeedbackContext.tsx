@@ -9,7 +9,9 @@ export type FeedbackContextType = {
   feedback: FeedbackItemType[]
   addFeedback: (newFeedbackItem: FeedbackItemType) => void
   deleteFeedback: (id: string | number) => void
+  updateFeedback: (id: string | number, item: FeedbackItemType) => void
   editFeedback: (item: FeedbackItemType) => void
+  feedbackEdit: EditFeedbackItem
 }
 
 const FeedbackContext = createContext<FeedbackContextType | undefined>(
@@ -17,9 +19,7 @@ const FeedbackContext = createContext<FeedbackContextType | undefined>(
 )
 export const FeedbackProvider = (props: Props) => {
   const { children } = props
-
   const [feedback, setFeedback] = useState<FeedbackItemType[]>([])
-
   const [feedbackEdit, setFeedbackEdit] = useState<EditFeedbackItem>({
     item: { id: '', text: '', rating: 0 },
     edit: false,
@@ -35,6 +35,17 @@ export const FeedbackProvider = (props: Props) => {
     }
   }
 
+  const updateFeedback = (
+    id: string | number,
+    updatedItem: FeedbackItemType,
+  ) => {
+    setFeedback(
+      feedback.map((item) =>
+        item.id === id ? { ...item, ...updatedItem } : item,
+      ),
+    )
+  }
+
   const editFeedback = (item: FeedbackItemType) => {
     setFeedbackEdit({
       item,
@@ -44,7 +55,14 @@ export const FeedbackProvider = (props: Props) => {
 
   return (
     <FeedbackContext.Provider
-      value={{ feedback, deleteFeedback, addFeedback, editFeedback }}
+      value={{
+        feedback,
+        deleteFeedback,
+        addFeedback,
+        editFeedback,
+        feedbackEdit,
+        updateFeedback,
+      }}
     >
       {children}
     </FeedbackContext.Provider>
