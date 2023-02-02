@@ -1,30 +1,32 @@
-import React, { useContext } from 'react';
+import React, { useContext } from 'react'
 
 import FeedbackItem from './FeedbackItem'
 import SimpleLoader from './shared/simpleLoader'
-import FeedbackContext, { FeedbackContextType } from '../context/FeedbackContext';
-import { FeedbackItemType } from '../types/FeedbackItem';
-
+import FeedbackContext, {
+  FeedbackContextType,
+} from '../context/FeedbackContext'
+import { FeedbackItemType } from '../types/FeedbackItem'
 
 const FeedbackList = () => {
-
-  const {feedback } = useContext(FeedbackContext) as FeedbackContextType
+  const { feedback, isLoading } = useContext(
+    FeedbackContext,
+  ) as FeedbackContextType
 
   return (
     <>
-      {' '}
-      {!feedback ? (
-        <SimpleLoader />
+      {!isLoading && (!feedback || feedback.length === 0) ? (
+        <p> No Feedback Yet</p>
       ) : (
         <>
-          <div className="feedback-list">
-            {feedback.map((item: FeedbackItemType) => (
-              <FeedbackItem
-                key={item.id}
-                item={item}
-              ></FeedbackItem>
-            ))}
-          </div>
+          {isLoading ? (
+            <SimpleLoader />
+          ) : (
+            <div className="feedback-list">
+              {feedback.map((item: FeedbackItemType) => (
+                <FeedbackItem key={item.id} item={item}></FeedbackItem>
+              ))}
+            </div>
+          )}
         </>
       )}
     </>

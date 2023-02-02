@@ -211,6 +211,10 @@ input:focus {
   margin: 10px 0;
 }
 
+.loader {
+  margin: 0px auto;
+}
+
 @media (max-width: 600px) {
   .rating li {
     margin: 10px 3px;
@@ -229,7 +233,7 @@ input:focus {
   }
 }
 .lds-ellipsis {
-  display: inline-block;
+  display: flex;
   position: relative;
   width: 80px;
   height: 80px;

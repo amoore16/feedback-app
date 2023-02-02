@@ -1,7 +1,7 @@
 export type FeedbackItemType = {
     rating: number
     text: string
-    id: string | number
+    id?: string | number
   }
 
 export type EditFeedbackItem = {

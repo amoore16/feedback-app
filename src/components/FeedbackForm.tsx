@@ -44,13 +44,12 @@ function FeedbackForm() {
     e.preventDefault()
     if (text.trim().length > 10) {
       const newFeedbackItem: FeedbackItemType = {
-        id: uuidv4(),
         text,
         rating,
       }
       
-      if(feedbackEdit.edit === true) {
-        updateFeedback(feedbackEdit.item.id, newFeedbackItem)
+      if(feedbackEdit.edit === true && feedbackEdit.item.id) {
+        updateFeedback(feedbackEdit?.item?.id, newFeedbackItem)
       } else {
         addFeedback(newFeedbackItem)
       }
