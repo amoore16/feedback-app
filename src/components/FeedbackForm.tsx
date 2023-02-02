@@ -1,5 +1,4 @@
 import React, { ChangeEvent, useContext, useState, useEffect } from 'react'
-import { v4 as uuidv4 } from 'uuid'
 import FeedbackContext, { FeedbackContextType } from '../context/FeedbackContext'
 
 import { FeedbackItemType } from '../types/FeedbackItem'
